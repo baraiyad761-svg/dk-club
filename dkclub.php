@@ -1,143 +1,95 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DDWIN - 91 Club Clone</title>
-<link rel="manifest" href="manifest.json">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>91 CLUB Clone</title>
 <style>
-body{margin:0;background:#0a0a0a;color:#fff;font-family:Arial}
-.top{background:gold;color:#000;padding:12px;display:flex;justify-content:space-between;font-weight:bold}
-.nav{display:flex;justify-content:space-around;background:#1a1a1a;padding:10px;position:fixed;bottom:0;width:100%}
-.nav div{text-align:center;font-size:12px;cursor:pointer}
-.page{display:none;padding:15px;padding-bottom:80px}
-.active{display:block}
-.card{background:#1e1e1e;padding:15px;border-radius:12px;margin:10px 0;border:1px solid #333}
-.btn{width:100%;padding:12px;background:gold;border:none;border-radius:8px;font-weight:bold;margin-top:10px}
-input{width:95%;padding:10px;border-radius:8px;border:none;margin:5px 0;background:#2a2a2a;color:#fff}
-.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.g-card{background:#222;padding:10px;border-radius:10px;text-align:center;font-size:30px}
-.fish{font-size:35px;position:absolute;cursor:pointer}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial} body{background:#f5f5f5}
+.header{background:#ff3a3a;color:#fff;padding:12px;text-align:center;font-weight:bold;position:sticky;top:0;z-index:10}
+.wallet-card{background:linear-gradient(90deg,#ff4d4d,#ff8a00);color:#fff;margin:10px;border-radius:12px;padding:15px;display:flex;justify-content:space-between}
+.menu{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:10px} .m{background:#fff;border-radius:10px;padding:12px 5px;text-align:center;box-shadow:0 1px 3px #0002;font-size:12px}
+.lotteryTabs{display:flex;gap:8px;padding:10px;overflow:auto} .tab{background:#fff;padding:8px 18px;border-radius:20px;border:1px solid #ddd;white-space:nowrap} .tab.active{background:#ff3a3a;color:#fff}
+.gameBox{background:#fff;margin:10px;border-radius:12px;padding:10px}
+.timerBar{background:#222;color:#fff;padding:10px;border-radius:8px;display:flex;justify-content:space-between;margin-bottom:10px}
+.colors{display:flex;gap:10px;justify-content:center;margin:15px 0} .c{width:70px;height:40px;border-radius:20px;border:none;color:#fff;font-weight:bold}
+.c.green{background:#00c851} .c.red{background:#ff3a3a} .c.violet{background:#9b59b6}
+.numGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px} .num{background:#f0f0f0;padding:12px;border-radius:8px;text-align:center;font-weight:bold}
+.bottomNav{position:fixed;bottom:0;left:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #ddd}
+#resultPage{position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;display:none;z-index:99;padding:15px;overflow:auto}
+.mineGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:15px} .box{background:#eee;height:50px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:20px}
 </style>
 </head>
 <body>
+<div class="header">91 CLUB</div>
+<div class="wallet-card"><div>Balance<br><b style="font-size:22px">₹<span id="bal">5000.00</span></b></div><div><button onclick="balance+=500;updateBal()" style="background:#fff;border:none;padding:8px 15px;border-radius:20px;color:#ff3a3a;font-weight:bold">Deposit</button></div></div>
 
-<div class="top"><span>DDWIN 💎</span><span>₹<span id="balTop">0</span></span></div>
-
-<!-- LOGIN PAGE -->
-<div id="loginPage" class="page active">
-<h2 style="text-align:center">Login / Register</h2>
-<div class="card">
-<input id="mob" placeholder="Mobile Number">
-<input id="pass" type="password" placeholder="Password">
-<button class="btn" onclick="login()">LOGIN & START GAME</button>
-<p style="text-align:center;font-size:12px;color:#aaa">Login કરતા જ ₹1000 Bonus મળશે</p>
-</div>
-</div>
-
-<!-- HOME / COLOUR GAME -->
-<div id="homePage" class="page">
-<div class="card" style="background:linear-gradient(gold,orange);color:#000;text-align:center">
-<h3>Wallet Balance</h3><h1>₹<span id="bal">1000</span></h1>
-<button onclick="showPage('walletPage')" style="padding:6px 15px;border-radius:20px;border:none;background:#000;color:gold">Deposit / Withdraw</button>
-</div>
-<div class="card">
-<h3>🎯 Colour Prediction</h3>
-<p id="timer" style="color:gold">30s</p>
-<div style="display:flex;gap:10px"><button onclick="playColor('RED')" style="background:red" class="btn">RED</button><button onclick="playColor('GREEN')" style="background:green" class="btn">GREEN</button><button onclick="playColor('VIOLET')" style="background:violet" class="btn">VIOLET</button></div>
-</div>
-<button class="btn" onclick="showPage('slotsPage')" style="background:#222;color:#fff;border:1px solid gold">🎰 20 SLOT GAMES PLAY</button>
-<button class="btn" onclick="showPage('fishPage')" style="background:#00aaff">🐟 FISH HUNTER 20 FISH</button>
+<div class="menu">
+<div class="m" onclick="openAll('Win Go')">🏆<br>Win Go</div>
+<div class="m" onclick="openAll('Mines')">💣<br>Mines</div>
+<div class="m" onclick="openAll('Aviator')">🚀<br>Aviator</div>
+<div class="m" onclick="openAll('Gems')">💎<br>Gems</div>
+<div class="m" onclick="openAll('Dragon')">🐉<br>Dragon</div>
+<div class="m" onclick="openAll('Plinko')">🎯<br>Plinko</div>
+<div class="m" onclick="openAll('Dice')">🎲<br>Dice</div>
+<div class="m" onclick="openAll('Roulette')">🎰<br>Roulette</div>
 </div>
 
-<!-- SLOTS PAGE -->
-<div id="slotsPage" class="page">
-<h2>🎰 20 GEMS / SLOTS</h2>
-<div id="slotGrid" class="grid"></div>
-<div id="gemBox" class="grid" style="margin-top:15px"></div>
-<p id="slotResult" style="text-align:center;font-size:24px"></p>
-<button class="btn" onclick="spinGems()">OPEN 15 GEMS 💎</button>
+<div class="gameBox">
+<div class="lotteryTabs"><div class="tab active">Win Go 1M</div><div class="tab">Win Go 3M</div><div class="tab">Win Go 5M</div></div>
+<div class="timerBar"><span>Time: <b id="timer">00:30</b></span><span id="period">20250925001</span></div>
+<p style="font-size:12px;color:#666">Select Color / Number</p>
+<div class="colors">
+<button class="c green" onclick="placeBet('GREEN',2)">GREEN</button>
+<button class="c violet" onclick="placeBet('VIOLET',4.5)">VIOLET</button>
+<button class="c red" onclick="placeBet('RED',2)">RED</button>
+</div>
+<div class="numGrid">
+<div class="num" onclick="placeBet('0',9)">0</div><div class="num" onclick="placeBet('1',9)">1</div><div class="num" onclick="placeBet('2',9)">2</div><div class="num" onclick="placeBet('3',9)">3</div><div class="num" onclick="placeBet('4',9)">4</div>
+<div class="num" onclick="placeBet('5',9)">5</div><div class="num" onclick="placeBet('6',9)">6</div><div class="num" onclick="placeBet('7',9)">7</div><div class="num" onclick="placeBet('8',9)">8</div><div class="num" onclick="placeBet('9',9)">9</div>
 </div>
 
-<!-- FISH PAGE -->
-<div id="fishPage" class="page">
-<h2>🐟 FISH HUNTER</h2>
-<div id="sea" style="position:relative;height:60vh;background:linear-gradient(#00aaff,#001a33);border-radius:15px;overflow:hidden"></div>
-<button class="btn" onclick="loadFish()">START 20 FISH</button>
-</div>
-
-<!-- WALLET PAGE -->
-<div id="walletPage" class="page">
-<h2>Wallet</h2>
-<div class="card"><h1>₹<span id="bal2">1000</span></h1></div>
-<div class="card">
-<h3>Deposit</h3><input id="depAmt" placeholder="Amount"><button class="btn" onclick="deposit()">Deposit Add</button>
-<h3>Withdraw</h3><input id="withAmt" placeholder="Amount"><input placeholder="UPI ID"><button class="btn" onclick="withdraw()" style="background:#fff;color:#000">Withdraw</button>
+<div style="display:flex;gap:8px;margin-top:15px">
+<input id="betAmt" type="number" value="100" style="flex:1;padding:12px;border:1px solid #ddd;border-radius:8px">
+<button onclick="confirmBet()" style="flex:1;background:#ff3a3a;color:#fff;border:none;border-radius:8px;font-weight:bold">BET ₹<span id="betShow">100</span></button>
 </div>
 </div>
 
-<div class="nav">
-<div onclick="showPage('homePage')">🏠<br>Home</div>
-<div onclick="showPage('slotsPage')">🎰<br>Gems</div>
-<div onclick="showPage('fishPage')">🐟<br>Fish</div>
-<div onclick="showPage('walletPage')">💰<br>Wallet</div>
+<div id="resultPage">
+<h2 id="rTitle" style="color:#ff3a3a;text-align:center"></h2>
+<div id="rContent"></div>
+<button onclick="document.getElementById('resultPage').style.display='none'" style="width:100%;margin-top:15px;padding:12px;border:1px solid #ddd;background:#fff;border-radius:25px">Back to Lobby</button>
 </div>
+
+<div class="bottomNav"><span>🏠 Home</span><span>💰 Wallet</span><span>👤 My</span></div>
 
 <script>
-let bal = parseInt(localStorage.getItem('ddwin_bal') || 1000);
-function updateBal(){ document.getElementById('balTop').innerText=bal; document.getElementById('bal').innerText=bal; document.getElementById('bal2').innerText=bal; localStorage.setItem('ddwin_bal',bal); }
-updateBal();
-
-function login(){
- if(document.getElementById('mob').value.length<5){alert("Mobile nakho");return;}
- localStorage.setItem('ddwin_user', document.getElementById('mob').value);
- showPage('homePage'); updateBal();
+let balance=5000, sel='', selMult=0;
+let betInput=document.getElementById('betAmt'); betInput.oninput=()=>{document.getElementById('betShow').innerText=betInput.value}
+function updateBal(){document.getElementById('bal').innerText=balance.toFixed(2)}
+function placeBet(type,m){sel=type; selMult=m; alert(type+' Selected - '+m+'x');}
+function confirmBet(){
+ let amt=parseInt(betInput.value); if(!sel){alert('Color/Number Select karo!');return;} if(amt>balance){alert('Balance nathi!');return;}
+ balance-=amt; updateBal();
+ let winNum=Math.floor(Math.random()*10); let isWin=false;
+ if(sel=='GREEN' && [1,3,7,9].includes(winNum)) isWin=true;
+ if(sel=='RED' && [0,2,5,8].includes(winNum)) isWin=true;
+ if(sel==winNum) isWin=true;
+ if(isWin){let w=Math.floor(amt*selMult); balance+=w; updateBal(); alert('WIN! Number: '+winNum+' | Win: ₹'+w);}else{alert('LOSS! Number: '+winNum);}
 }
-function showPage(p){
- document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
- document.getElementById(p).classList.add('active');
- if(p=='slotsPage') loadSlots();
- if(p=='fishPage') loadFish();
+function openAll(name){
+ document.getElementById('resultPage').style.display='block';
+ document.getElementById('rTitle').innerText=name;
+ let c=document.getElementById('rContent'); c.innerHTML='';
+ if(name=='Mines' || name=='Gems'){
+   let bet=parseInt(betInput.value); if(bet>balance){alert('Balance nathi');return;} balance-=bet; updateBal();
+   c.innerHTML='<p>Bet: ₹'+bet+' | 3 Bomb | Gems kholo</p><div class="mineGrid" id="mg"></div><p>Win: ₹<span id="mw">0</span></p><button onclick="collectMines()" style="width:100%;padding:12px;background:#00c851;color:#fff;border:none;border-radius:10px;margin-top:10px">CASHOUT WIN</button>';
+   let mg=document.getElementById('mg'); let bombs=[1,12,20]; window.mWin=0; window.mBet=bet; window.mMult=1;
+   for(let i=0;i<25;i++){let d=document.createElement('div'); d.className='box'; d.innerText='?'; d.onclick=function(){if(d.innerText!='?')return; if(bombs.includes(i)){d.innerText='💣';d.style.background='red';alert('Bomb Loss!');document.getElementById('resultPage').style.display='none';}else{d.innerText='💎';d.style.background='#00c851'; mMult+=0.9; mWin=Math.floor(mBet*mMult); document.getElementById('mw').innerText=mWin;}}; mg.appendChild(d);}
+ } else { c.innerHTML='<h1 style="font-size:50px;text-align:center;margin:20px">🎮 '+name+'</h1><button onclick="confirmBet()" style="width:100%;padding:15px;background:#ff3a3a;color:#fff;border:none;border-radius:10px">PLAY WITH ₹'+betInput.value+'</button>';}
 }
-
-function playColor(c){
- let bet=100; if(bal<bet){alert("Low Bal");return;}
- let win=['RED','GREEN','VIOLET'][Math.floor(Math.random()*3)];
- if(c==win){bal+=bet;alert("WIN "+win);}else{bal-=bet;alert("LOSS Result "+win);}
- updateBal();
-}
-function deposit(){ let a=parseInt(document.getElementById('depAmt').value); bal+=a; updateBal(); alert("Deposit Success ₹"+a); }
-function withdraw(){ let a=parseInt(document.getElementById('withAmt').value); if(a>bal){alert("Low Bal");return;} bal-=a; updateBal(); alert("Withdraw Request ₹"+a+" - 24h me aayega"); }
-
-let games=["✈️","💣","📈","🔴","🎲","🎡","7️⃣","🃏","🐯","🎰","🍒","💎","🍀","🃏","👑","💰","💠","🍬","⚡","🌟"];
-function loadSlots(){
- let g=document.getElementById('slotGrid'); g.innerHTML="";
- games.forEach((icon,i)=>{ g.innerHTML+=`<div class='g-card'>${icon}<br><small style='font-size:10px'>Game ${i+1}</small></div>`; });
- spinGems();
-}
-function spinGems(){
- let box=document.getElementById('gemBox'); box.innerHTML="";
- let res=document.getElementById('slotResult'); let win=0;
- for(let i=0;i<15;i++){
-  let r=Math.random(); let em=r>0.6?"💎":r>0.3?"💰":"💣";
-  box.innerHTML+=`<div class='g-card'>${em}</div>`;
-  if(em=="💎") win+=50; if(em=="💰") win+=20; if(em=="💣") win-=10;
- }
- if(win>0){bal+=win; res.innerText="WIN ₹"+win+" 💎";}else{bal+=win; res.innerText="LOSS ₹"+Math.abs(win);}
- updateBal();
-}
-
-function loadFish(){
- let sea=document.getElementById('sea'); sea.innerHTML="";
- for(let i=0;i<20;i++){
-  let f=document.createElement('div'); f.className='fish';
-  f.innerText=["🐟","🐠","🐡","🦈","🐙"][Math.floor(Math.random()*5)];
-  f.style.left=Math.random()*85+"%"; f.style.top=Math.random()*80+"%";
-  f.onclick=function(){ bal+=20; updateBal(); this.innerText="💥"; setTimeout(()=>this.remove(),300); }
-  sea.appendChild(f);
- }
-}
-setInterval(()=>{ let t=document.getElementById('timer'); if(t){ let s=parseInt(t.innerText); if(s<=0) t.innerText="30s"; else t.innerText=(s-1)+"s"; } },1000);
+function collectMines(){balance+=window.mWin; updateBal(); alert('Cashout ₹'+window.mWin); document.getElementById('resultPage').style.display='none';}
+// timer
+let t=30; setInterval(()=>{t--; if(t<0)t=30; document.getElementById('timer').innerText='00:'+(t<10?'0'+t:t);},1000);
 </script>
 </body>
 </html>
