@@ -2,100 +2,98 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>91 CLUB - Final</title>
+<title>91 CLUB</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#f0f0f0}
-.loginPage{padding:20px;background:#fff;height:100vh} .loginPage h2{text-align:center;margin:20px 0} .inp{width:100%;padding:14px;margin:8px 0;border:1px solid #ddd;border-radius:8px}
-.btnRed{width:100%;padding:14px;background:#ff3a3a;color:#fff;border:none;border-radius:25px;font-weight:bold;margin-top:10px}
-.header{background:#ff3a3a;color:#fff;padding:12px;text-align:center;font-weight:bold;position:sticky;top:0;z-index:20;display:flex;justify-content:space-between}
-.wallet{background:linear-gradient(90deg,#ff4d4d,#ff8a00);color:#fff;margin:10px;border-radius:12px;padding:15px;display:flex;justify-content:space-between}
-.tabs{display:flex;gap:8px;padding:10px;overflow:auto;background:#fff} .tab{padding:8px 15px;border-radius:20px;border:1px solid #ddd;white-space:nowrap;font-size:12px} .tab.active{background:#ff3a3a;color:#fff}
-.games{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px} .g{background:#fff;border-radius:10px;padding:10px;text-align:center;box-shadow:0 1px 2px #0001;height:90px;display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:11px;font-weight:bold}
-.g span{font-size:22px}
-#main{display:none} #login{display:block}
-#gamePage{position:fixed;top:0;left:0;width:100%;height:100%;background:#111;display:none;z-index:99;padding:10px;overflow:auto;color:#fff;text-align:center}
-.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:15px 0} .box{background:#2a2a2a;height:48px;border-radius:6px;display:flex;align-items:center;justify-content:center}
-.betRow{display:flex;gap:6px;margin:10px 0} .betRow input{flex:1;padding:12px;border-radius:8px;border:none} .betRow button{padding:10px 12px;border-radius:8px;border:none;background:#333;color:#fff}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#f5f5f5}
+.header{background:#e71d36;color:#fff;padding:15px;text-align:center;font-size:18px;font-weight:bold}
+.wallet{background:linear-gradient(90deg,#ff3a3a,#ff8a00);margin:12px;border-radius:15px;padding:16px;color:#fff;display:flex;justify-content:space-between;align-items:center}
+.tabs{display:flex;gap:8px;padding:10px;background:#fff;overflow:auto}
+.tab{padding:8px 16px;border-radius:20px;border:1px solid #ddd;white-space:nowrap;font-size:13px;background:#fff}
+.tab.active{background:#e71d36;color:#fff}
+.betBox{background:#fff;margin:10px;border-radius:12px;padding:12px}
+.betRow{display:flex;gap:6px;margin-top:8px}
+.betRow input{flex:1;padding:12px;border-radius:8px;border:1px solid #ddd}
+.betRow button{padding:10px 12px;border-radius:8px;border:none;background:#eee}
+.games{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:10px}
+.g{background:#fff;border-radius:12px;padding:15px 5px;text-align:center;box-shadow:0 2px 5px #0001}
+#gamePage{position:fixed;top:0;left:0;width:100%;height:100%;background:#111;display:none;z-index:100;padding:15px;color:#fff;text-align:center;overflow:auto}
+.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:15px 0}
+.box{background:#2a2a2a;height:50px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.btn{width:100%;padding:14px;border-radius:25px;border:none;font-weight:bold;margin-top:10px}
+.btnGreen{background:#00c851;color:#fff} .btnRed{background:#e71d36;color:#fff}
 </style>
 </head>
 <body>
 
-<div id="login" class="loginPage">
-<h2>Log in<br><span style="font-size:13px;color:#666">Please log in with your phone number</span></h2>
-<input class="inp" placeholder="Phone Number +91">
-<input class="inp" type="password" placeholder="Password">
-<p style="text-align:right;font-size:12px;color:#ff3a3a">Forgot password? Remember password</p>
-<button class="btnRed" onclick="loginNow()">Log in</button>
-<button class="btnRed" style="background:#fff;color:#ff3a3a;border:1px solid #ff3a3a">Register</button>
-<p style="font-size:11px;text-align:center;margin-top:20px;color:#888">91 CLUB.COM Official Channel @telegram</p>
-</div>
+<div class="header">91 CLUB</div>
 
-<div id="main">
-<div class="header"><span>91 CLUB</span><span>Balance ₹<b id="bal">5000.00</b></span></div>
-<div class="wallet"><div>Total balance<br><b style="font-size:20px">₹<span id="bal2">5000.00</span></b><br><span style="font-size:11px">UID 3674707</span></div><div><button style="background:#fff;border:none;padding:8px 15px;border-radius:20px;color:#ff3a3a" onclick="balance+=500;upd()">Deposit</button></div></div>
+<div class="wallet">
+<div><div style="font-size:13px;opacity:0.9">Total balance</div><b style="font-size:24px">₹<span id="bal">5000.00</span></b><br><span style="font-size:11px">UID: 8233336 | VIP1</span></div>
+<div><button onclick="balance+=500;upd()" style="background:#fff;border:none;padding:8px 18px;border-radius:20px;color:#e71d36;font-weight:bold">Deposit</button></div>
+</div>
 
 <div class="tabs">
-<div class="tab active">For You</div><div class="tab">Lobby</div><div class="tab">Slots</div><div class="tab">Card</div><div class="tab">Fishing</div><div class="tab">JILI</div>
+<div class="tab active">For You</div><div class="tab">Lobby</div><div class="tab">Slots</div><div class="tab">Card</div><div class="tab">Fishing</div>
 </div>
 
-<div style="padding:10px">
-<div style="display:flex;gap:8px"><input id="betAmt" type="number" value="100" style="flex:1;padding:10px;border-radius:8px;border:1px solid #ddd"><button onclick="betAmt.value=100" style="padding:10px">100</button><button onclick="betAmt.value=500">500</button></div>
+<div class="betBox">
+<div style="font-size:13px;color:#666">Bet Amount ગમે એટલી નાખો</div>
+<div class="betRow">
+<input id="betAmt" type="number" value="100">
+<button onclick="betAmt.value=100">100</button>
+<button onclick="betAmt.value=500">500</button>
+<button onclick="betAmt.value=1000">1000</button>
+</div>
 </div>
 
-<div class="games" id="gameList"></div>
-
-<div style="height:80px"></div>
-<div style="position:fixed;bottom:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:10px;border-top:1px solid #ddd;font-size:12px"><span>🏠 Home</span><span>🎁 Activity</span><span>💰 Get ₹500</span><span>📢 Promotion</span><span>👤 Account</span></div>
+<div class="games">
+<div class="g" onclick="openG('MINES')">💣<br>MINES</div>
+<div class="g" onclick="openG('GEMS CLASH')">💎<br>GEMS CLASH</div>
+<div class="g" onclick="openG('AVIATOR')">🚀<br>AVIATOR</div>
+<div class="g" onclick="openG('CHICKEN ROAD')">🐔<br>CHICKEN ROAD</div>
+<div class="g" onclick="openG('DRAGON')">🐉<br>DRAGON</div>
+<div class="g" onclick="openG('DICE')">🎲<br>DICE</div>
+<div class="g" onclick="openG('PLINKO')">🎯<br>PLINKO</div>
+<div class="g" onclick="openG('ROULETTE')">🎰<br>ROULETTE</div>
+<div class="g" onclick="openG('CRICKET')">🏏<br>CRICKET</div>
 </div>
 
 <div id="gamePage">
-<h2 id="gTitle" style="color:gold"></h2>
-<p>Bet ₹<span id="sBet">0</span> | Win ₹<span id="wAmt">0</span> | <span id="mText">1.00x</span></p>
+<h2 id="gTitle" style="color:gold">GAME</h2>
+<p>Bet ₹<span id="sBet">0</span> | Win ₹<span id="w">0</span> | <span id="m">1.00x</span></p>
 <div id="gContent"></div>
-<button class="btnRed" style="background:#00c851" onclick="cashout()">WIN CASHOUT</button>
-<button class="btnRed" style="background:#333" onclick="document.getElementById('gamePage').style.display='none'">Close - Loss</button>
+<button class="btn btnGreen" onclick="cashout()">WIN - Cashout ₹<span id="w2">0</span></button>
+<button class="btn" style="background:#333;color:#fff" onclick="document.getElementById('gamePage').style.display='none';clearInterval(timer)">Close</button>
 </div>
 
 <script>
-let balance=5000;
-function loginNow(){document.getElementById('login').style.display='none';document.getElementById('main').style.display='block';}
-function upd(){document.getElementById('bal').innerText=balance.toFixed(2);document.getElementById('bal2').innerText=balance.toFixed(2);}
-let allGames=["AVIATOR","AVIATOR 2","CHICKEN ROAD","CHICKEN ROAD 2","DRAGON GEMS CLASH","GEMS CLASH","PUBG","MINES","MINES PRO","CRICKET","LIMBO","JAVELIN","DRAGON TIGER","GOAL","DICE","KING PAUPER","HILO","PLINKO","BOMB WAVE","HOTLINE","CRYPTOS","ROULETTE","KENO 80","KENO PHARAOH","COIN FLIP","MONEY COMING","RUMMY","TEEN PATTI","ANDAR BAHAR","BLACKJACK","FISHING CLUB","MINESWEEPER","ROCKET DICE","SPACE XY","7UP 7DOWN","BONUS ROAD","TRADER","BALLOON","SUPER PENALTY","POWER KRAKEN","CRASH","HEAD TAILS","CHICKEN DASH","JOKER COINS","MEGA ACE","SUPER ACE","CHARGE BUFFALO","MEGA QUEEN","ALI BABA","GOLDEN BANK","FORTUNE WHEEL","LUCKY JAGUAR","CANDY BABY","CRAZY FAFAFA","HAPPY TAXI","FENG SHEN","WAR DRAGONS","LUCKY PIGGY","CRICKET KING","GOLDEN TEMPLE","FRUITY WHEEL","TREASURE","ZOMBIE ROULETTE","BUFFALO BANK","JOKER 777","CLOVER COINS","WILD TIGER","DROP BALL","MONEY COMING 100x","DINOSAUR TYCOON","DRAGON FORTUNE","BOOM LEGEND","MEGA FISHING","HAPPY FISHING","BOMBING FISHING","ROYAL FISHING","JACKPOT FISHING","SHADE DRAGONS","DISCO FISHING"];
-
-let gl=document.getElementById('gameList');
-allGames.forEach(n=>{
- let d=document.createElement('div'); d.className='g'; d.innerHTML='<span>🎮</span>'+n; d.onclick=()=>openGame(n); gl.appendChild(d);
-});
-
-let bet=0,win=0,mult=1,bombs=[],timer=null;
-function openGame(name){
- bet=parseInt(document.getElementById('betAmt').value); if(bet>balance){alert('Balance nathi');return;}
- balance-=bet; upd(); win=0;mult=1;
+let balance=5000, bet=0, win=0, mult=1, timer=null;
+function upd(){document.getElementById('bal').innerText=balance.toFixed(2);}
+function openG(name){
+ bet=parseInt(document.getElementById('betAmt').value); if(bet>balance){alert('Balance ઓછું છે');return;}
+ balance-=bet; upd(); win=0; mult=1;
  document.getElementById('gTitle').innerText=name;
  document.getElementById('sBet').innerText=bet;
- document.getElementById('wAmt').innerText=0;
- document.getElementById('mText').innerText='1.00x';
  document.getElementById('gamePage').style.display='block';
  let c=document.getElementById('gContent'); c.innerHTML='';
- if(name.includes('MINES')||name.includes('GEMS')){
-   bombs=[2,8,19]; let grid=document.createElement('div'); grid.className='grid5';
-   for(let i=0;i<25;i++){let b=document.createElement('div'); b.className='box'; b.id='bx'+i; b.innerText='?'; b.onclick=function(){if(b.innerText!='?')return; if(bombs.includes(i)){b.innerText='💣';b.style.background='red';alert('Bomb Loss ₹'+bet);document.getElementById('gamePage').style.display='none';}else{b.innerText='💎';b.style.background='#00c851';mult+=0.9;win=Math.floor(bet*mult); document.getElementById('wAmt').innerText=win; document.getElementById('mText').innerText=mult.toFixed(2)+'x';}}; grid.appendChild(b);}
-   c.appendChild(grid);
-   // Auto open start
-   let auto=document.createElement('button'); auto.innerText='AUTO GEMS START'; auto.className='btnRed'; auto.style.background='#ff8a00';
-   auto.onclick=()=>{timer=setInterval(()=>{let rem=[];for(let i=0;i<25;i++){let e=document.getElementById('bx'+i); if(e.innerText=='?')rem.push(i);} if(rem.length==0){clearInterval(timer);return;} let idx=rem[Math.floor(Math.random()*rem.length)]; document.getElementById('bx'+idx).click();},700);};
-   c.appendChild(auto);
- } else {
-   c.innerHTML='<h1 style="font-size:60px;margin:20px">🚀</h1><p>'+name+' - 91 Club Real Logic</p><button class="btnRed" onclick="playCrash()">PLAY</button><h1 id="crash" style="margin:15px">1.00x</h1>';
- }
+ let bombs=[2,9,18];
+ let grid=document.createElement('div'); grid.className='grid5';
+ for(let i=0;i<25;i++){let b=document.createElement('div'); b.className='box'; b.id='b'+i; b.innerText='?'; b.onclick=()=>clickBox(i,bombs); grid.appendChild(b);}
+ c.appendChild(grid);
+ let autoBtn=document.createElement('button'); autoBtn.className='btn btnRed'; autoBtn.innerText='AUTO GEMS START'; autoBtn.onclick=startAuto;
+ c.appendChild(autoBtn);
 }
-
-function playCrash(){
- let v=1.0; let crashPt=(Math.random()*4+1.2).toFixed(2);
- let iv=setInterval(()=>{v+=0.05; document.getElementById('crash').innerText=v.toFixed(2)+'x'; document.getElementById('mText').innerText=v.toFixed(2)+'x'; win=Math.floor(bet*v); document.getElementById('wAmt').innerText=win; if(v>=crashPt){clearInterval(iv); alert('Crashed at '+crashPt+'x | Loss ₹'+bet); document.getElementById('gamePage').style.display='none';}},100);
+function clickBox(i,bombs){
+ let el=document.getElementById('b'+i); if(el.innerText!='?')return;
+ if(bombs.includes(i)){el.innerText='💣';el.style.background='red';clearInterval(timer);setTimeout(()=>{alert('Bomb! Loss ₹'+bet);document.getElementById('gamePage').style.display='none';},300);}
+ else{el.innerText='💎';el.style.background='#00c851';mult+=0.90;win=Math.floor(bet*mult);document.getElementById('w').innerText=win;document.getElementById('w2').innerText=win;document.getElementById('m').innerText=mult.toFixed(2)+'x';}
 }
-
-function cashout(){if(win==0){alert('Pela ek gem kholo!');return;} clearInterval(timer); balance+=win; upd(); alert('WIN ₹'+win+' | Bet ₹'+bet+' -> '+mult.toFixed(2)+'x'); document.getElementById('gamePage').style.display='none';}
+function startAuto(){
+ let bombs=[2,9,18];
+ timer=setInterval(()=>{let rem=[];for(let i=0;i<25;i++){let e=document.getElementById('b'+i); if(e && e.innerText=='?')rem.push(i);} if(rem.length==0){clearInterval(timer);return;} let r=rem[Math.floor(Math.random()*rem.length)]; clickBox(r,bombs);},600);
+}
+function cashout(){if(win==0){alert('પહેલા 1 Gems ખોલ');return;}clearInterval(timer);balance+=win;upd();alert('WIN ₹'+win);document.getElementById('gamePage').style.display='none';}
 </script>
 </body>
 </html>
