@@ -61,3 +61,4 @@ function cashOut(){if(profit==0) return; balance+=profit; document.getElementByI
 </script>
 </body>
 </html>
+<a href="gems.html" style="display:block;text-align:center;margin:10px;background:gold;color:#000;padding:10px;border-radius:20px;font-weight:bold;text-decoration:none">💎 VIEW ALL 8 GEMS - CLICK HERE 💎</a>
