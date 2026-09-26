@@ -1,0 +1,45 @@
+here<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>All Fortune Gems</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#0d0225;color:#fff}
+h2{color:gold;text-align:center;padding:15px 0 5px;font-size:18px}
+.sub{text-align:center;color:#aaa;font-size:11px;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.card{background:linear-gradient(180deg,#2a0a4a,#1a0a2e);border-radius:14px;padding:10px;text-align:center;border:1px solid #444;position:relative}
+.icon{font-size:50px;margin:10px 0}
+.badge{position:absolute;top:6px;left:6px;background:#a020f0;color:#fff;font-size:9px;padding:3px 6px;border-radius:4px;font-weight:bold}
+.badge.gold{background:gold;color:#000}
+.card h3{color:gold;font-size:12px;margin:5px 0}
+.card p{color:#bbb;font-size:9px;height:24px}
+.card button{width:100%;margin-top:8px;background:linear-gradient(90deg,#ff9800,#ff5722);color:#fff;border:none;padding:7px;border-radius:15px;font-size:11px;font-weight:bold}
+.popup{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#0d0225;z-index:999;padding:15px}
+.reels{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:20px 0}
+.reel{height:70px;background:#1a0a2e;border:2px solid gold;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:30px}
+</style></head><body>
+<h2>💎 ALL FORTUNE GEMS COLLECTION 💎</h2>
+<div class="sub">Google ma maleli badhi 8 Gems - JILI Official List</div>
+<div class="grid">
+<div class="card" onclick="openG('g1')"><div class="badge">375X MAX</div><div class="icon">💎</div><h3>Fortune Gems 1</h3><p>3 reels, 5 paylines + 4th special reel 15X</p><button>PLAY Low-Med</button></div>
+<div class="card" onclick="openG('g2')"><div class="badge gold">10000X MAX</div><div class="icon">💎🎡</div><h3>Fortune Gems 2</h3><p>Full Symbol, Multiplier, Lucky Wheel + Scatter</p><button>LUCKY WHEEL</button></div>
+<div class="card" onclick="openG('g3')"><div class="badge gold">ENHANCED</div><div class="icon">💎✨</div><h3>Fortune Gems 3</h3><p>3x3 + special reel, interactive Wheel</p><button>ENHANCED WHEEL</button></div>
+<div class="card" onclick="openG('g500')"><div class="badge">500X</div><div class="icon">💎500</div><h3>Fortune Gems 500</h3><p>500 Series - Higher bet, higher win</p><button>500 SERIES</button></div>
+<div class="card" onclick="openG('gl')"><div class="badge gold">LEGEND</div><div class="icon">👑💎</div><h3>Gems Legend</h3><p>Premium graphics and bonus</p><button>LEGEND</button></div>
+<div class="card" onclick="openG('gs')"><div class="badge">SCRATCH</div><div class="icon">🎫💎</div><h3>Gems Scratch</h3><p>Arcade Type - Scratch Card</p><button>SCRATCH</button></div>
+<div class="card" onclick="openG('mc')"><div class="badge" style="background:green">FAST</div><div class="icon">💰</div><h3>Money Coming</h3><p>Fast-paced, quick sessions</p><button>FAST WIN</button></div>
+<div class="card" onclick="openG('mce')"><div class="badge" style="background:green">EXPAND</div><div class="icon">💰💰</div><h3>Money Expand</h3><p>Expand Bets Version</p><button>EXPAND</button></div>
+</div>
+<div id="g1" class="popup"><button onclick="closeG()" style="float:right;background:red;color:#fff;border:none;padding:6px 10px;border-radius:5px">X</button><h2>Fortune Gems 1 - 375X</h2><div class="reels"><div class="reel">💎</div><div class="reel">🔴</div><div class="reel">💎</div><div class="reel">💙</div><div class="reel">💎</div><div class="reel">💚</div></div><button onclick="this.innerText='WIN ₹'+(Math.random()*300|0)" style="width:100%;padding:12px;background:linear-gradient(90deg,#ff9800,#ff5722);border:none;border-radius:20px;color:#fff;font-weight:bold">SPIN ₹10 - 15X</button></div>
+<div id="g2" class="popup"><button onclick="closeG()" style="float:right;background:red;color:#fff;border:none;padding:6px 10px;border-radius:5px">X</button><h2>Fortune Gems 2 - 10000X</h2><div class="reels"><div class="reel">💎</div><div class="reel">🎡</div><div class="reel">💎</div><div class="reel">💎</div><div class="reel">💎</div><div class="reel">💎</div></div><button onclick="this.innerText='WHEEL WIN ₹'+(Math.random()*1000|0)" style="width:100%;padding:12px;background:#a020f0;border:none;border-radius:20px;color:#fff;font-weight:bold">SPIN LUCKY WHEEL</button></div>
+<div id="g3" class="popup"><button onclick="closeG()" style="float:right;background:red;color:#fff;border:none;padding:6px 10px;border-radius:5px">X</button><h2>Fortune Gems 3</h2><div class="reels"><div class="reel">💎</div><div class="reel">💎</div><div class="reel">💎</div></div><button onclick="this.innerText='WIN ₹'+(Math.random()*800|0)" style="width:100%;padding:12px;background:#0072ff;border:none;border-radius:20px;color:#fff;font-weight:bold">SPIN 15X</button></div>
+<div id="g500" class="popup"><button onclick="closeG()" style="float:right;background:red;color:#fff;border:none;padding:6px 10px;border-radius:5px">X</button><h2>Fortune Gems 500</h2><div class="reels"><div class="reel">500</div><div class="reel">💎</div><div class="reel">500</div></div><button onclick="this.innerText='WIN ₹'+(Math.random()*500|0)" style="width:100%;padding:12px;background:gold;border:none;border-radius:20px;color:#000;font-weight:bold;margin-top:40px">SPIN ₹50 - 500 SERIES</button></div>
+<div id="gl" class="popup"><button onclick="closeG()" style="float:right;background:red;color:#fff;border:none;padding:6px 10px;border-radius:5px">X</button><h2>Gems Legend</h2><button onclick="this.innerText='LEGEND WIN!'" style="width:100%;padding:12px;background:gold;border:none;border-radius:20px;color:#000;font-weight:bold;margin-top:50px">PLAY LEGEND</button></div>
+<div id="gs" class="popup"><button onclick="closeG()" style="float:right;background:red;color:#fff;border:none;padding:6px 10px;border-radius:5px">X</button><h2>Gems Scratch</h2><button onclick="this.innerText='SCRATCH WIN ₹100!'" style="width:100%;padding:12px;background:#fff;border:none;border-radius:20px;color:#000;font-weight:bold;margin-top:50px">SCRATCH NOW</button></div>
+<div id="mc" class="popup"><button onclick="closeG()" style="float:right;background:red;color:#fff;border:none;padding:6px 10px;border-radius:5px">X</button><h2>Money Coming</h2><button onclick="this.innerText='MONEY WIN!'" style="width:100%;padding:12px;background:green;border:none;border-radius:20px;color:#fff;font-weight:bold;margin-top:50px">SPIN MONEY</button></div>
+<div id="mce" class="popup"><button onclick="closeG()" style="float:right;background:red;color:#fff;border:none;padding:6px 10px;border-radius:5px">X</button><h2>Money Expand</h2><button onclick="this.innerText='EXPAND WIN!'" style="width:100%;padding:12px;background:green;border:none;border-radius:20px;color:#fff;font-weight:bold;margin-top:50px">SPIN EXPAND</button></div>
+<script>
+function openG(id){document.getElementById(id).style.display='block'}
+function closeG(){document.querySelectorAll('.popup').forEach(e=>e.style.display='none')}
+</script>
+</body></html>
